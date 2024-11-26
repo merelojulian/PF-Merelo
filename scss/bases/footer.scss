@@ -1,0 +1,30 @@
+.footer {
+    background-color: black;
+    color: whitesmoke;
+    justify-content: space-between;
+    align-content: center;
+    padding: 1rem;
+    margin-top: 1.5rem;
+
+    .datos-footer {
+        margin: 1rem 0;
+
+    }
+
+    .contacto-footer {
+        margin: 1rem 0;
+    }
+
+    .redes-footer {
+        a {
+            gap: 1rem;
+            color: white;
+        }
+    }
+
+    .creditos-footer {
+        text-align: center;
+        border-top: 0.5px solid white;
+        margin: 0 2rem;
+    }
+}

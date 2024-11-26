@@ -1,0 +1,17 @@
+.info {
+    ul {
+     
+
+        li {
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            gap: 1rem;
+
+            a {
+                font-size: 2rem;
+                color: black;
+            }
+        }
+    }
+}
