@@ -9,7 +9,6 @@ class Producto {
 }
 
 class Carrito {
-  // Array vacío para ir llenando el carrito
   constructor() {
     this.items = [];
   }
@@ -32,39 +31,46 @@ class Carrito {
       .join("\n");
   }
 
-
   eliminarProducto(idProducto) {
     const itemIndex = this.items.findIndex(i => i.producto.id === idProducto);
-
     if (itemIndex !== -1) {
-      // Si se encuentra el producto, se elimina
       this.items.splice(itemIndex, 1);
       alert(`Producto con ID ${idProducto} ha sido eliminado del carrito.`);
     } else {
       alert(`Producto con ID ${idProducto} no encontrado.`);
     }
   }
-
 }
 
 // Crear carrito
 const carrito = new Carrito();
 
-// Definimos dos variables para poder cargar productos manualmente
 let continuar = true;
 let id = 1;
 let total = 0;
 
-
 while (continuar) {
   const nombre = prompt("Ingrese el nombre del producto:");
-  const precio = parseFloat(prompt("Ingrese el precio del producto:"));
-  const cantidad = parseInt(prompt("Ingrese la cantidad del producto:"), 10);
+
+  let precio;
+  do {
+    precio = parseFloat(prompt("Ingrese el precio del producto:"));
+    if (isNaN(precio) || precio <= 0) {
+      alert("Por favor, ingrese un precio válido mayor que 0.");
+    }
+  } while (isNaN(precio) || precio <= 0);
+
+  let cantidad;
+  do {
+    cantidad = parseInt(prompt("Ingrese la cantidad del producto:"), 10);
+    if (isNaN(cantidad) || cantidad <= 0) {
+      alert("Por favor, ingrese una cantidad válida mayor que 0.");
+    }
+  } while (isNaN(cantidad) || cantidad <= 0);
 
   const producto = new Producto(id++, nombre, precio);
   carrito.agregarProducto(producto, cantidad);
 
-  // Actualizamos el precio
   total += precio * cantidad;
 
   continuar = confirm("¿Desea agregar otro producto?");
@@ -86,9 +92,9 @@ while (eliminar) {
     carrito.eliminarProducto(idEliminar);
 
     // Actualizamos total después de eliminar el producto
-    total = 0; // Resetear el total
+    total = 0;
     carrito.items.forEach(i => {
-      total += i.producto.precio * i.cantidad; // Volver a calcular el total
+      total += i.producto.precio * i.cantidad;
     });
   }
 }
